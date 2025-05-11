@@ -1,6 +1,6 @@
-import { washingMachineType } from "@/types/types";
+import { WashingMachineType } from "@/types/types";
 
-let washingMachines: washingMachineType[]= [
+let washingMachines: WashingMachineType[]= [
     { id: 1, lastChange: new Date(), availableWashingMachines: true },
     { id: 2, lastChange: new Date(), availableWashingMachines: true },
     { id: 3, lastChange: new Date(), availableWashingMachines: true },
@@ -21,7 +21,7 @@ export async function PUT(request: Request) {
     const { id, lastChange, availableWashingMachines } = body;
 
     const putwashingMachines = () => {
-        let updatedwashingMachines : washingMachineType[] = []
+        let updatedwashingMachines : WashingMachineType[] = []
         washingMachines.map(washingMachine => {
             washingMachine.id === id ?
                 updatedwashingMachines.push({ id, lastChange, availableWashingMachines })
