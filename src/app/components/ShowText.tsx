@@ -1,10 +1,10 @@
 import React from 'react'
 
-const ShowText = ({id, lastChange, available}: {id: number, lastChange: string, available: boolean}) => {
+const ShowText = ({ text, id, lastChange, available }: { text: string, id: number, lastChange: string, available: boolean }) => {
     return (
         <div className="p-4 text-white space-y-2">
             <h3 className="text-xl font-bold underline">
-                Washing Machines {id}
+                {text} {id}
             </h3>
             <p>
                 Last change at <span className="font-medium">{lastChange}</span>

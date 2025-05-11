@@ -3,6 +3,7 @@ import { DryerMachinesType, WashingMachineType } from "@/types/types";
 import { useEffect, useState } from "react";
 import Button from "./components/Button";
 import ShowText from "./components/ShowText";
+import LanguageSelect from "./components/LanguageSelect";
 
 export default function Home() {
   const [washingMachines, setWashingMachines] = useState<WashingMachineType[] | undefined>()
@@ -68,13 +69,16 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 space-y-10 px-5">
-      <h1 className="text-4xl font-bold text-gray-800 text-center">
+    <div className="flex flex-col items-center justify-center min-h-[100dvh] bg-gray-100 space-y-10 p-5">
+      <div className="md:flex items-center justify-evenly w-full gap-x-8 space-y-5 md:space-y-0">
+      <h1 className="text-3xl font-bold text-gray-800 text-left">
         Laundry Room Status
         <br />
-        Otto-Franke-Straße 45, 12489 Berlin
+        Otto-Franke-Straße 45
       </h1>
-      <hr className="my-6 border-t border-gray-300 w-9/12" />
+      <LanguageSelect />
+      </div>
+      <hr className="w-9/12 border-gray-300" />
       <h2 className="text-2xl font-bold text-gray-800">
         Washing Machines
       </h2>
@@ -82,12 +86,12 @@ export default function Home() {
         {washingMachines?.map((washingMachine) => (
           <div key={washingMachine.id}>
             <Button isActive={washingMachine.availableWashingMachines} onClick={() => handleClickWashingMachine(washingMachine.id, !washingMachine.availableWashingMachines, new Date().toString())}>
-              <ShowText id={washingMachine.id} lastChange={changeDateFormat(washingMachine.lastChange.toString())} available={washingMachine.availableWashingMachines} />
+              <ShowText text='Washing Machine' id={washingMachine.id} lastChange={changeDateFormat(washingMachine.lastChange.toString())} available={washingMachine.availableWashingMachines} />
             </Button>
           </div>
         ))}
       </div>
-      <hr className="my-6 border-t border-gray-300 w-9/12" />
+      <hr className="w-9/12 border-gray-300" />
       <h2 className="text-2xl font-bold text-gray-800">
         Dryer Machines
       </h2>
@@ -95,7 +99,7 @@ export default function Home() {
         {dryerMachines?.map((dryerMachine) => (
           <div key={dryerMachine.id}>
             <Button isActive={dryerMachine.availableDryerMachines} onClick={() => handleClickDryerMachines(dryerMachine.id, !dryerMachine.availableDryerMachines, new Date().toString())}>
-              <ShowText id={dryerMachine.id} lastChange={changeDateFormat(dryerMachine.lastChange.toString())} available={dryerMachine.availableDryerMachines} />
+              <ShowText text='Dryer Machine' id={dryerMachine.id} lastChange={changeDateFormat(dryerMachine.lastChange.toString())} available={dryerMachine.availableDryerMachines} />
             </Button>
           </div>
         ))}
