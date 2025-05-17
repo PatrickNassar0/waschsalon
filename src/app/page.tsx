@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import Button from "./components/Button";
 import Card from "./components/Card";
 import LanguageSelect from "./components/LanguageSelect";
+import { redirect, useSearchParams } from "next/navigation";
 
 export default function Home() {
   const [washingMachines, setWashingMachines] = useState<WashingMachineType[] | undefined>()
   const [dryerMachines, setDryerMachines] = useState<DryerMachinesType[] | undefined>()
-  const [languageIs, setLanguageIs] = useState<'EN' | 'DE'>('EN')
+  const searchParams = useSearchParams()
+  const [languageIs, setLanguageIs] = useState<'EN' | 'DE'>('DE')
 
   const texts: textsType = {
     EN: {
@@ -43,6 +45,7 @@ export default function Home() {
 
   const changeLanguage = (language: 'EN' | 'DE') => {
     setLanguageIs(language)
+    redirect(`?language=${language}`)
   }
 
 
@@ -76,6 +79,8 @@ export default function Home() {
   }
 
   useEffect(() => {
+    const getlanguage = () => ['EN', 'DE'].includes(searchParams.get('language') ?? '') ? (searchParams.get('language')?.toString() as 'EN' | 'DE') : 'DE'
+
     const fetchDate = async () => {
       const washingMachinesRes = await fetch('/api/washingMachines')
         .then(res => res.json())
@@ -88,6 +93,7 @@ export default function Home() {
       setWashingMachines(washingMachinesRes)
       setDryerMachines(dryerMachinesRes)
     }
+    setLanguageIs(getlanguage())
     fetchDate()
   }, [])
 
