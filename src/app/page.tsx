@@ -16,6 +16,8 @@ export default function Home() {
       washingMachines: 'Washing Machines',
       dryerMachines: 'Dryer Machines',
       loading: 'Loading...',
+      yes: 'Yes',
+      no: 'No',
       Card: {
         titleWashingMachines: 'Washing Machine',
         titleDryerMachines: 'Dryer Machine',
@@ -26,8 +28,10 @@ export default function Home() {
     DE: {
       title: 'Waschküchenstatus',
       washingMachines: 'Waschmaschinen',
-      dryerMachines: 'Trockner',
+      dryerMachines: 'Trocknungsmaschinen',
       loading: 'Laden...',
+      yes: 'Ja',
+      no: 'Nein',
       Card: {
         titleWashingMachines: 'Waschmaschine',
         titleDryerMachines: 'Trockner Maschine',
@@ -44,7 +48,7 @@ export default function Home() {
 
 
   const handleClickWashingMachine = async (id: number, availableWashingMachines: boolean, lastChange: string) => {
-    await fetch(`http://localhost:3000/api/washingMachines`,
+    await fetch(`/api/washingMachines`,
       {
         method: 'PUT',
         headers: {
@@ -58,7 +62,7 @@ export default function Home() {
   }
 
   const handleClickDryerMachines = async (id: number, availableDryerMachines: boolean, lastChange: string) => {
-    await fetch(`http://localhost:3000/api/dryerMachines`,
+    await fetch(`/api/dryerMachines`,
       {
         method: 'PUT',
         headers: {
@@ -73,11 +77,11 @@ export default function Home() {
 
   useEffect(() => {
     const fetchDate = async () => {
-      const washingMachinesRes = await fetch('http://localhost:3000/api/washingMachines')
+      const washingMachinesRes = await fetch('/api/washingMachines')
         .then(res => res.json())
         .catch(err => console.log(err))
 
-      const dryerMachinesRes = await fetch('http://localhost:3000/api/dryerMachines')
+      const dryerMachinesRes = await fetch('/api/dryerMachines')
         .then(res => res.json())
         .catch(err => console.log(err))
 
@@ -91,7 +95,7 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center min-h-[100dvh] bg-gray-100 space-y-10 p-5">
       <div className="md:flex items-center justify-evenly w-full gap-x-8 space-y-5 md:space-y-0">
         <h1 className="text-3xl font-bold text-gray-800 text-left">
-          {languageIs === 'EN' ? texts.EN.title : texts.DE.title}
+          {texts[languageIs].title}
         </h1>
         <LanguageSelect languageIs={languageIs} changeLanguage={changeLanguage} />
       </div>
@@ -99,7 +103,7 @@ export default function Home() {
       <hr className="w-9/12 border-gray-300" />
 
       <h2 className="text-2xl font-bold text-gray-800">
-        {languageIs === 'EN' ? texts.EN.washingMachines : texts.DE.washingMachines}
+        {texts[languageIs].washingMachines}
       </h2>
 
       {washingMachines ?
@@ -112,8 +116,7 @@ export default function Home() {
               >
                 <Card
                   languageIs={languageIs}
-                  title={{EN: texts.EN.Card.titleWashingMachines, DE: texts.DE.Card.titleWashingMachines}}
-                  machine={texts}
+                  title={{ EN: texts.EN.Card.titleWashingMachines, DE: texts.DE.Card.titleWashingMachines }}
                   texts={texts}
                   id={washingMachine.id}
                   lastChange={washingMachine.lastChange.toString()}
@@ -125,14 +128,14 @@ export default function Home() {
         </div>
         :
         <div className="w-full text-center">
-          <p className="text-gray-500">{languageIs === 'EN' ? texts.EN.loading : texts.DE.loading}</p>
+          <p className="text-gray-500">{texts[languageIs].loading}</p>
         </div>
       }
 
       <hr className="w-9/12 border-gray-300" />
 
       <h2 className="text-2xl font-bold text-gray-800">
-        {languageIs === 'EN' ? texts.EN.dryerMachines : texts.DE.dryerMachines}
+        {texts[languageIs].dryerMachines}
       </h2>
 
       {dryerMachines ?
@@ -145,8 +148,7 @@ export default function Home() {
               >
                 <Card
                   languageIs={languageIs}
-                  title={{EN: texts.EN.Card.titleDryerMachines, DE: texts.DE.Card.titleDryerMachines}}
-                  machine={texts}
+                  title={{ EN: texts.EN.Card.titleDryerMachines, DE: texts.DE.Card.titleDryerMachines }}
                   texts={texts}
                   id={dryerMachine.id}
                   lastChange={dryerMachine.lastChange.toString()}
@@ -158,7 +160,7 @@ export default function Home() {
         </div>
         :
         <div className="w-full text-center">
-          <p className="text-gray-500">{languageIs === 'EN' ? texts.EN.loading : texts.DE.loading}</p>
+          <p className="text-gray-500">{texts[languageIs].loading}</p>
         </div>
       }
     </div>

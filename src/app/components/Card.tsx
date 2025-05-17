@@ -1,7 +1,7 @@
 import { textsType } from '@/types/types'
 import React from 'react'
 
-const Card = ({ languageIs, title, texts, id, lastChange, available }: { languageIs: string, title: {EN: string, DE: string}, texts: textsType, id: number, lastChange: string, available: boolean }) => {
+const Card = ({ languageIs, title, texts, id, lastChange, available }: { languageIs: 'EN' | 'DE', title: { EN: string, DE: string }, texts: textsType, id: number, lastChange: string, available: boolean }) => {
     const changeDateFormat = (date: string) => {
         const dateObj = new Date(date);
         const options: Intl.DateTimeFormatOptions = {
@@ -21,12 +21,12 @@ const Card = ({ languageIs, title, texts, id, lastChange, available }: { languag
                 {languageIs === 'EN' ? title.EN : title.DE} {id}
             </h3>
             <p>
-                {languageIs === 'EN' ? texts.EN.Card.textBeforeTime : texts.DE.Card.textBeforeTime}  <span className="font-medium">{changeDateFormat(lastChange)}</span>
+                {texts[languageIs].Card.textBeforeTime}  <span className="font-medium">{changeDateFormat(lastChange)}</span>
             </p>
             <p>
-            {languageIs === 'EN' ? texts.EN.Card.available : texts.DE.Card.available} :{" "}
+                {texts[languageIs].Card.available}:{' '}
                 <span className='font-semibold'>
-                    {available ? 'Yes' : 'No'}
+                    {available ? texts[languageIs].yes : texts[languageIs].no}
                 </span>
             </p>
         </div>

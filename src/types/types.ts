@@ -8,6 +8,8 @@ export type textsType = {
       washingMachines: string,
       dryerMachines: string,
       loading: string,
+      yes: string,
+      no: string,
       Card:{
         titleWashingMachines: string,
         titleDryerMachines: string,
@@ -20,6 +22,8 @@ export type textsType = {
       washingMachines: string,
       dryerMachines: string,
       loading: string,
+      yes: string,
+      no: string,
       Card:{
         titleWashingMachines: string,
         titleDryerMachines: string,
