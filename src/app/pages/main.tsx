@@ -60,7 +60,7 @@ export default function Main() {
         body: JSON.stringify({ id: id, availableWashingMachines, lastChange }),
       })
       .then(res => res.json())
-      .then(res => setWashingMachines(res))
+      .then(res => window.location.reload())
       .catch(err => console.log(err))
   }
 
@@ -74,7 +74,7 @@ export default function Main() {
         body: JSON.stringify({ id: id, availableDryerMachines, lastChange }),
       })
       .then(res => res.json())
-      .then(res => setDryerMachines(res))
+      .then(res => window.location.reload())
       .catch(err => console.log(err))
   }
 
@@ -90,7 +90,6 @@ export default function Main() {
         .then(res => res.json())
         .catch(err => console.log(err))
 
-        console.log(dryerMachinesRes)
       setWashingMachines(washingMachinesRes)
       setDryerMachines(dryerMachinesRes)
     }
