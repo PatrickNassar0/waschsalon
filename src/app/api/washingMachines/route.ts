@@ -1,13 +1,10 @@
 import { WashingMachineType } from "@/types/types";
+import * as fs from 'node:fs/promises';
+import path from 'node:path';
 
-let washingMachines: WashingMachineType[]= [
-    { id: 1, lastChange: new Date(), availableWashingMachines: true },
-    { id: 2, lastChange: new Date(), availableWashingMachines: true },
-    { id: 3, lastChange: new Date(), availableWashingMachines: true },
-    { id: 4, lastChange: new Date(), availableWashingMachines: true },
-    { id: 5, lastChange: new Date(), availableWashingMachines: true },
-    { id: 6, lastChange: new Date(), availableWashingMachines: true }
-];
+const filePath = path.join(process.cwd(), 'src/data', 'washingMachines.json')
+
+let washingMachines: WashingMachineType[] = JSON.parse(await fs.readFile(filePath, 'utf-8'))
 
 export async function GET() {
     return new Response(JSON.stringify(washingMachines), {
@@ -21,7 +18,7 @@ export async function PUT(request: Request) {
     const { id, lastChange, availableWashingMachines } = body;
 
     const putwashingMachines = () => {
-        let updatedwashingMachines : WashingMachineType[] = []
+        let updatedwashingMachines: WashingMachineType[] = []
         washingMachines.map(washingMachine => {
             washingMachine.id === id ?
                 updatedwashingMachines.push({ id, lastChange, availableWashingMachines })
@@ -30,7 +27,9 @@ export async function PUT(request: Request) {
         })
         return updatedwashingMachines
     }
-    washingMachines = putwashingMachines()
+    const updatedWashingMachines = putwashingMachines()
+    washingMachines = updatedWashingMachines
+    await fs.writeFile(filePath, JSON.stringify(updatedWashingMachines, null, 2), 'utf-8');
 
     return new Response(JSON.stringify(washingMachines), {
         status: 200,

@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "lastChange": "Sun May 18 2025 17:12:26 GMT+0200 (Central European Summer Time)",
+    "availableDryerMachines": true
+  },
+  {
+    "id": 2,
+    "lastChange": "Sun May 18 2025 17:12:09 GMT+0200 (Central European Summer Time)",
+    "availableDryerMachines": false
+  },
+  {
+    "id": 3,
+    "lastChange": "Sun May 18 2025 17:12:08 GMT+0200 (Central European Summer Time)",
+    "availableDryerMachines": true
+  },
+  {
+    "id": 4,
+    "lastChange": "Sun May 18 2025 17:12:27 GMT+0200 (Central European Summer Time)",
+    "availableDryerMachines": false
+  }
+]

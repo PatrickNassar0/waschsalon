@@ -1,11 +1,10 @@
 import { DryerMachinesType } from "@/types/types";
+import * as fs from 'node:fs/promises';
+import path from 'node:path';
 
-let dryerMachines: DryerMachinesType[] = [
-    { id: 1, lastChange: new Date(), availableDryerMachines: true },
-    { id: 2, lastChange: new Date(), availableDryerMachines: true },
-    { id: 3, lastChange: new Date(), availableDryerMachines: true },
-    { id: 4, lastChange: new Date(), availableDryerMachines: true },
-];
+const filePath = path.join(process.cwd(), 'src/data', 'dryerMachines.json')
+
+let dryerMachines: DryerMachinesType[] = JSON.parse(await fs.readFile(filePath, 'utf-8'))
 
 export async function GET() {
     return new Response(JSON.stringify(dryerMachines), {
@@ -28,7 +27,9 @@ export async function PUT(request: Request) {
         })
         return updatedDryerMachines
     }
-    dryerMachines = putDryerMachines()
+    const updatedDryerMachines = putDryerMachines()
+    dryerMachines = updatedDryerMachines
+    await fs.writeFile(filePath, JSON.stringify(updatedDryerMachines, null, 2), 'utf-8');
 
     return new Response(JSON.stringify(dryerMachines), {
         status: 200,

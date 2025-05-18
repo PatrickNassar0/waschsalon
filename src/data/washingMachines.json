@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "lastChange": "Sun May 18 2025 17:12:24 GMT+0200 (Central European Summer Time)",
+    "availableWashingMachines": true
+  },
+  {
+    "id": 2,
+    "lastChange": "Sun May 18 2025 17:12:23 GMT+0200 (Central European Summer Time)",
+    "availableWashingMachines": false
+  },
+  {
+    "id": 3,
+    "lastChange": "Sun May 18 2025 17:12:25 GMT+0200 (Central European Summer Time)",
+    "availableWashingMachines": true
+  },
+  {
+    "id": 4,
+    "lastChange": "2025-05-18T10:00:00.000Z",
+    "availableWashingMachines": false
+  },
+  {
+    "id": 5,
+    "lastChange": "2025-05-18T10:00:00.000Z",
+    "availableWashingMachines": true
+  },
+  {
+    "id": 6,
+    "lastChange": "2025-05-18T10:00:00.000Z",
+    "availableWashingMachines": false
+  }
+]

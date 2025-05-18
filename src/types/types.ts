@@ -1,6 +1,6 @@
-export type WashingMachineType = {id: number, lastChange: Date, availableWashingMachines: boolean }
+export type WashingMachineType = {id: number, lastChange: string, availableWashingMachines: boolean }
 
-export type DryerMachinesType = {id: number, lastChange: Date, availableDryerMachines: boolean }
+export type DryerMachinesType = {id: number, lastChange: string, availableDryerMachines: boolean }
 
 export type textsType = {
     EN: {
